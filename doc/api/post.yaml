@@ -1,0 +1,42 @@
+components:
+  schemas:
+    postHead:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+#  text:
+#    type: string
+        tags:
+          type: array
+          items:
+            type: string
+        updated:
+          type: string
+        created:
+          type: string
+        createdBy:
+          type: string
+        updatedBy:
+          type: string
+    post:
+      allOf:
+        - $ref: #/components/schemas/postHead
+        - type: object
+          required:
+            - text
+          properties:
+            text:
+              type: string
+            internalLinks:
+              type: array
+              items:
+                type: string
+            externalLinks:
+              type: array
+              items:
+                type: string

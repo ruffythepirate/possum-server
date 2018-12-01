@@ -1,0 +1,25 @@
+openapi: "3.0.0"
+info:
+  title: Possum Server API specification
+  version: 0.0.1
+paths:
+  /api/posts:
+    post:
+      operationId: createPost
+      summary: Creates a post
+      requestBody:
+        $ref: post.yaml#/components/schemas/post
+      responses:
+        '200':
+          description: |-
+            200 response
+        '400'
+          description:
+            request is malformatted.
+    get:
+      operationId: getPosts
+      summary: Get a list of all posts
+      responseBody:
+        multipleOf:
+          $ref: post.yaml#/component/schemass/postHead
+
