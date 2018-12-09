@@ -3,11 +3,11 @@ package com.ruffy.posts
 import akka.actor.ActorSystem
 import com.softwaremill.macwire
 
-trait PostsModule {
+trait PostModule {
 
   implicit def system: ActorSystem
 
-  private val routes = macwire.wire[PostsRoutes]
+  private lazy val routes = macwire.wire[PostRoutes]
 
-  val postRoutes = routes.routes
+  lazy val postRoutes = routes.routes
 }

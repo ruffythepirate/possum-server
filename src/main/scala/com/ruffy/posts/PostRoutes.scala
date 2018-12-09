@@ -14,12 +14,12 @@ import com.ruffy.posts.PostRegistryActor._
 import scala.concurrent.Future
 import scala.concurrent.duration.DurationLong
 
-class PostsRoutes(implicit val system: ActorSystem) extends JsonSupport {
+class PostRoutes(implicit val system: ActorSystem) extends JsonSupport {
 
-  lazy val log = Logging(system, classOf[PostsRoutes])
+  lazy val log = Logging(system, classOf[PostRoutes])
 
   // the post request actor.
-  def postRegistryActor: ActorRef = system.actorOf(PostRegistryActor.props, "postRegistryActor")
+  lazy val postRegistryActor: ActorRef = system.actorOf(PostRegistryActor.props, "postRegistryActor")
 
   implicit lazy val timeout = Timeout(5.seconds)
 
@@ -27,6 +27,7 @@ class PostsRoutes(implicit val system: ActorSystem) extends JsonSupport {
     pathPrefix("posts") {
       pathEnd {
         get {
+          log.info("Getting posts")
           val posts: Future[Posts] =
             (postRegistryActor ? GetPosts).mapTo[Posts]
           complete(posts)

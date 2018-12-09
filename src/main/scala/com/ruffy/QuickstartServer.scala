@@ -1,23 +1,23 @@
 package com.ruffy
 
 //#quick-start-server
-import scala.concurrent.{ Await, ExecutionContext, Future }
-import scala.concurrent.duration.Duration
-import scala.util.{ Failure, Success }
 import akka.actor.{ ActorRef, ActorSystem }
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.server.Route
-import akka.stream.ActorMaterializer
-import com.ruffy.posts.PostsModule
 import akka.http.scaladsl.server.Directives._
+import akka.stream.ActorMaterializer
+import com.ruffy.posts.PostModule
+
+import scala.concurrent.duration.Duration
+import scala.concurrent.{ Await, ExecutionContext, Future }
+import scala.util.{ Failure, Success }
 
 //#main-class
-object QuickstartServer extends App with UserRoutes with PostsModule {
+object QuickstartServer extends App with UserRoutes with PostModule {
 
   // set up ActorSystem and other dependencies here
   //#main-class
   //#server-bootstrapping
-  implicit val system: ActorSystem = ActorSystem("helloAkkaHttpServer")
+  implicit val system: ActorSystem = ActorSystem("possum-system")
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   implicit val executionContext: ExecutionContext = system.dispatcher
   //#server-bootstrapping
