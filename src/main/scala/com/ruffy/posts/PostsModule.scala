@@ -1,8 +1,11 @@
 package com.ruffy.posts
 
+import akka.actor.ActorSystem
 import com.softwaremill.macwire
 
-class PostsModule {
+trait PostsModule {
+
+  implicit def actorSystem: ActorSystem
 
   val postRoutes = macwire.wire[PostsRoutes]
 }

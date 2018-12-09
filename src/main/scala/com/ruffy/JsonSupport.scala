@@ -1,6 +1,7 @@
 package com.ruffy
 
 import com.ruffy.UserRegistryActor.ActionPerformed
+import com.ruffy.posts.{ Post, Posts }
 
 //#json-support
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
@@ -12,6 +13,9 @@ trait JsonSupport extends SprayJsonSupport {
 
   implicit val userJsonFormat = jsonFormat3(User)
   implicit val usersJsonFormat = jsonFormat1(Users)
+
+  implicit val postJsonFormat = jsonFormat3(Post)
+  implicit val postsJsonFormat = jsonFormat1(Posts)
 
   implicit val actionPerformedJsonFormat = jsonFormat1(ActionPerformed)
 }
