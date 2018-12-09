@@ -1,8 +1,10 @@
 package com.ruffy.posts
 
+import java.time.LocalDateTime
+
 import akka.actor.{ Actor, ActorLogging, Props }
 
-final case class Post(id: String, title: String, text: String)
+final case class Post(id: String, title: String, tags: Set[String], createdBy: String, updatedBy: String, updated: LocalDateTime, created: LocalDateTime)
 final case class Posts(posts: Seq[Post])
 
 object PostRegistryActor {

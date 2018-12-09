@@ -9,8 +9,6 @@ components:
           type: string
         title:
           type: string
-#  text:
-#    type: string
         tags:
           type: array
           items:
