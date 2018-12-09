@@ -5,7 +5,9 @@ import com.softwaremill.macwire
 
 trait PostsModule {
 
-  implicit def actorSystem: ActorSystem
+  implicit def system: ActorSystem
 
-  val postRoutes = macwire.wire[PostsRoutes]
+  private val routes = macwire.wire[PostsRoutes]
+
+  val postRoutes = routes.routes
 }

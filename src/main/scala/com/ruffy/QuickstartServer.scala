@@ -4,14 +4,15 @@ package com.ruffy
 import scala.concurrent.{ Await, ExecutionContext, Future }
 import scala.concurrent.duration.Duration
 import scala.util.{ Failure, Success }
-
 import akka.actor.{ ActorRef, ActorSystem }
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
+import com.ruffy.posts.PostsModule
+import akka.http.scaladsl.server.Directives._
 
 //#main-class
-object QuickstartServer extends App with UserRoutes {
+object QuickstartServer extends App with UserRoutes with PostsModule {
 
   // set up ActorSystem and other dependencies here
   //#main-class
@@ -25,7 +26,7 @@ object QuickstartServer extends App with UserRoutes {
 
   //#main-class
   // from the UserRoutes trait
-  lazy val routes: Route = userRoutes
+  lazy val routes = userRoutes ~ postRoutes
   //#main-class
 
   //#http-server
